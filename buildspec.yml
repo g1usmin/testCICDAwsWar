@@ -1,0 +1,16 @@
+version: 0.2
+phases:
+  pre_build:
+    commands:
+      - echo "Pre-Build phase.."
+  build:
+    commands:
+      - echo "Build Phase.."
+      - mvn clean prepare-package war:exploded
+  post_build:
+    commands:
+      - echo "Post-build Phase, moving exploded files with deploy folder to root"
+      - mv target/deploy/WEB-INF ./WEB-INF
+artifacts:
+  files:
+    - WEB-INF/**/*
